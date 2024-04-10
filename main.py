@@ -1,10 +1,12 @@
-from typing import List
+from typing import Generator, List
 
 import gradio as gr
 import ollama
 
 
-def format_history(msg: str, history: List[List[str]], system_prompt: str):
+def format_history(
+    msg: str, history: List[List[str]], system_prompt: str
+) -> List[dict]:
     chat_history = [{"role": "system", "content": system_prompt}]
     for query, response in history:
         chat_history.append({"role": "user", "content": query})
@@ -13,7 +15,9 @@ def format_history(msg: str, history: List[List[str]], system_prompt: str):
     return chat_history
 
 
-def generate_response(msg: str, history: List[List[str]], system_prompt: str):
+def generate_response(
+    msg: str, history: List[List[str]], system_prompt: str
+) -> Generator[str, None, None]:
     chat_history = format_history(msg, history, system_prompt)
     response = ollama.chat(model="gemma:2b", stream=True, messages=chat_history)
     message = ""
