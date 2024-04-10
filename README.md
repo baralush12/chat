@@ -31,5 +31,16 @@ This repo will be used to learn about LLMs, RAG and Chat-Bots.
 ### Install requirements
 `pip install -r requirements.txt`
 
+### Install dev-requirements
+`pip install -r dev-requirements.txt`
+
+### Un-Installing pre-commit
+`pre-commit uninstall`
+
+### Running pre-commit (will also run automatically on commits)
+`pre-commit run --all-files`
+
+**NOTE:** Auto pre-commit will run on every commit (on the staged files only) while `pre-commit run --all-files` will run on all files.
+
 ### Run Chat-Bot
 `python main.py`
